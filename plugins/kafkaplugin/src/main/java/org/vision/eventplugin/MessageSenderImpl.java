@@ -100,6 +100,7 @@ public class MessageSenderImpl{
         props.put("acks", "all");
         props.put("retries", 0);
         props.put("linger.ms", 1);
+        props.put("client.id", "event-plugin-producer");
         props.put("bootstrap.servers", this.serverAddress);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
