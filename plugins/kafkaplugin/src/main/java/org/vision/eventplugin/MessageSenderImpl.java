@@ -8,8 +8,10 @@ import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MessageSenderImpl{
+    private  static AtomicInteger CLIENT_ID_COUNT = new AtomicInteger(0) ;
     private static MessageSenderImpl instance = null;
     private static final Logger log = LoggerFactory.getLogger(MessageSenderImpl.class);
 
@@ -100,7 +102,7 @@ public class MessageSenderImpl{
         props.put("acks", "all");
         props.put("retries", 0);
         props.put("linger.ms", 1);
-        props.put("client.id", "event-plugin-producer");
+        props.put(ProducerConfig.CLIENT_ID_CONFIG, "event-plugin-producer" + CLIENT_ID_COUNT.getAndIncrement() );
         props.put("bootstrap.servers", this.serverAddress);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
