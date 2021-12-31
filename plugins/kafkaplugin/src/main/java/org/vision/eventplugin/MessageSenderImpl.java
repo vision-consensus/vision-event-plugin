@@ -134,7 +134,7 @@ public class MessageSenderImpl{
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
                     log.debug("sendKafkaRecord successfully");
-                    System.out.println("sendKafkaRecord successfully " + exception.getMessage());
+                    System.out.println("sendKafkaRecord successfully " + (exception != null ? exception.getMessage() : "" ));
                 }
             });
         } catch (Exception e) {
