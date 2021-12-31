@@ -134,10 +134,12 @@ public class MessageSenderImpl{
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
                     log.debug("sendKafkaRecord successfully");
+                    System.out.println("sendKafkaRecord successfully " + exception.getMessage());
                 }
             });
         } catch (Exception e) {
            log.error("sendKafkaRecord {}", e);
+           System.out.println("sendKafkaRecord " + e.getMessage());
         }
 
         printTimestamp((String)data);
